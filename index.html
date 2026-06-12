@@ -122,6 +122,23 @@ header.scrolled{background:rgba(5,8,22,.78);-webkit-backdrop-filter:blur(18px);b
 .orbit-ring .dot{position:absolute;top:-5px;left:50%;width:10px;height:10px;border-radius:50%;background:var(--accent);box-shadow:0 0 14px var(--accent)}
 @keyframes spin{to{transform:rotate(360deg)}}
 @keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-16px)}}
+/* holographic hex network behind logo */
+.hero-logo-wrap{z-index:2}
+.holo-bg{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none;z-index:0}
+.hex-net{width:min(540px,108%);height:auto;overflow:visible;opacity:.9}
+.hex-net .hx{fill:none;stroke:rgba(96,165,250,.30);stroke-width:1.4;transform-origin:center;transform-box:fill-box}
+.hex-net .hx.glow{stroke:rgba(56,189,248,.45);filter:drop-shadow(0 0 7px rgba(56,189,248,.55))}
+.hex-net .hxr1{animation:spin 60s linear infinite}
+.hex-net .hxr2{animation:spin 42s linear infinite reverse}
+.hex-net .hxp{animation:hexpulse 4.5s ease-in-out infinite}
+@keyframes hexpulse{0%,100%{opacity:.35;transform:scale(1)}50%{opacity:.9;transform:scale(1.06)}}
+.hex-net .ln{stroke:rgba(56,189,248,.28);stroke-width:1;stroke-dasharray:5 11;animation:dataflow 5s linear infinite}
+@keyframes dataflow{to{stroke-dashoffset:-160}}
+.hex-net .nd{fill:#38BDF8;filter:drop-shadow(0 0 6px rgba(56,189,248,.9));animation:nodepulse 3s ease-in-out infinite}
+@keyframes nodepulse{0%,100%{opacity:.45}50%{opacity:1}}
+.holo-sheen{position:absolute;width:min(480px,96%);aspect-ratio:1;border-radius:50%;background:conic-gradient(from 0deg,transparent 0 60deg,rgba(56,189,248,.16) 95deg,transparent 135deg,transparent 215deg,rgba(37,99,235,.14) 255deg,transparent 295deg);animation:spin 16s linear infinite;filter:blur(8px)}
+.holo-scan{position:absolute;width:min(400px,84%);aspect-ratio:1;border-radius:50%;background:repeating-linear-gradient(0deg,rgba(56,189,248,.08) 0 2px,transparent 2px 7px);-webkit-mask:radial-gradient(circle,#000 35%,transparent 70%);mask:radial-gradient(circle,#000 35%,transparent 70%);mix-blend-mode:screen;animation:scanmove 6s linear infinite}
+@keyframes scanmove{to{background-position:0 63px}}
 .scroll-hint{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);z-index:2;color:var(--text-2);font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;display:flex;flex-direction:column;align-items:center;gap:8px}
 .scroll-hint i{width:1px;height:38px;background:linear-gradient(var(--accent),transparent);display:block;animation:drip 1.6s infinite}
 @keyframes drip{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
@@ -278,7 +295,10 @@ header.scrolled{background:rgba(5,8,22,.78);-webkit-backdrop-filter:blur(18px);b
 .info-card:hover{border-color:rgba(56,189,248,.4);transform:translateX(5px)}
 .info-card h3{font-size:.98rem;margin-bottom:4px}
 .info-card p{font-size:.86rem;color:var(--text-2)}
-.map-ph{height:210px;border-radius:18px;border:1px dashed rgba(96,165,250,.35);background:repeating-linear-gradient(45deg,rgba(37,99,235,.06) 0 12px,transparent 12px 24px);display:flex;align-items:center;justify-content:center;color:var(--text-2);font-size:.85rem;gap:10px;margin-bottom:16px}
+.map-box{position:relative;border-radius:18px;overflow:hidden;border:1px solid var(--glass-border);margin-bottom:16px;background:#0a0f24}
+.map-box iframe{width:100%;height:240px;border:0;display:block;filter:invert(.9) hue-rotate(180deg) saturate(.65) contrast(.92)}
+.map-box .map-open{position:absolute;right:12px;bottom:12px;font-size:.78rem;font-weight:600;color:#fff;background:rgba(5,8,22,.85);border:1px solid rgba(96,165,250,.4);padding:8px 16px;border-radius:50px;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);transition:.3s}
+.map-box .map-open:hover{background:var(--primary);border-color:var(--primary)}
 
 /* ---------- FAQ ---------- */
 .faq-list{max-width:760px;margin:50px auto 0}
@@ -403,6 +423,46 @@ footer{background:#03050f;border-top:1px solid rgba(255,255,255,.06);padding:70p
       </div>
     </div>
     <div class="hero-visual">
+      <div class="holo-bg" aria-hidden="true">
+        <div class="holo-sheen"></div>
+        <svg class="hex-net" viewBox="0 0 600 600" fill="none">
+<line class="ln" style="animation-delay:0.0s" x1="300" y1="300" x2="120" y2="165"/>
+<line class="ln" style="animation-delay:0.4s" x1="300" y1="300" x2="480" y2="135"/>
+<line class="ln" style="animation-delay:0.8s" x1="300" y1="300" x2="505" y2="435"/>
+<line class="ln" style="animation-delay:1.2s" x1="300" y1="300" x2="105" y2="445"/>
+<line class="ln" style="animation-delay:1.6s" x1="300" y1="300" x2="300" y2="72"/>
+<line class="ln" style="animation-delay:2.0s" x1="300" y1="300" x2="300" y2="528"/>
+<line class="ln" style="animation-delay:2.4s" x1="120" y1="165" x2="300" y2="72"/>
+<line class="ln" style="animation-delay:2.8s" x1="480" y1="135" x2="540" y2="290"/>
+<line class="ln" style="animation-delay:3.2s" x1="505" y1="435" x2="300" y2="528"/>
+<line class="ln" style="animation-delay:3.6s" x1="105" y1="445" x2="60" y2="300"/>
+<polygon class="hx hxr1" points="483.6,406.0 300.0,512.0 116.4,406.0 116.4,194.0 300.0,88.0 483.6,194.0"/>
+<polygon class="hx hxr2 glow" points="450.0,300.0 375.0,429.9 225.0,429.9 150.0,300.0 225.0,170.1 375.0,170.1"/>
+<polygon class="hx hxp" style="animation-delay:0.0s" points="175.0,165.0 147.5,212.6 92.5,212.6 65.0,165.0 92.5,117.4 147.5,117.4"/>
+<polygon class="hx hxp" style="animation-delay:0.7s" points="516.4,156.0 480.0,177.0 443.6,156.0 443.6,114.0 480.0,93.0 516.4,114.0"/>
+<polygon class="hx hxp" style="animation-delay:1.4s" points="565.0,435.0 535.0,487.0 475.0,487.0 445.0,435.0 475.0,383.0 535.0,383.0"/>
+<polygon class="hx hxp" style="animation-delay:2.1s" points="144.8,468.0 105.0,491.0 65.2,468.0 65.2,422.0 105.0,399.0 144.8,422.0"/>
+<polygon class="hx hxp" style="animation-delay:2.8s" points="334.0,72.0 317.0,101.4 283.0,101.4 266.0,72.0 283.0,42.6 317.0,42.6"/>
+<polygon class="hx hxp" style="animation-delay:3.5s" points="326.0,543.0 300.0,558.0 274.0,543.0 274.0,513.0 300.0,498.0 326.0,513.0"/>
+<polygon class="hx hxp" style="animation-delay:4.2s" points="86.0,300.0 73.0,322.5 47.0,322.5 34.0,300.0 47.0,277.5 73.0,277.5"/>
+<polygon class="hx hxp" style="animation-delay:4.9s" points="562.5,303.0 540.0,316.0 517.5,303.0 517.5,277.0 540.0,264.0 562.5,277.0"/>
+<circle class="nd" style="animation-delay:0.0s" cx="120.0" cy="165.0" r="4"/>
+<circle class="nd" style="animation-delay:0.3s" cx="480.0" cy="135.0" r="4"/>
+<circle class="nd" style="animation-delay:0.7s" cx="505.0" cy="435.0" r="4"/>
+<circle class="nd" style="animation-delay:1.0s" cx="105.0" cy="445.0" r="4"/>
+<circle class="nd" style="animation-delay:1.4s" cx="300.0" cy="72.0" r="4"/>
+<circle class="nd" style="animation-delay:1.8s" cx="300.0" cy="528.0" r="4"/>
+<circle class="nd" style="animation-delay:2.1s" cx="60.0" cy="300.0" r="4"/>
+<circle class="nd" style="animation-delay:2.4s" cx="540.0" cy="290.0" r="4"/>
+<circle class="nd" style="animation-delay:2.8s" cx="483.6" cy="406.0" r="3"/>
+<circle class="nd" style="animation-delay:3.1s" cx="300.0" cy="512.0" r="3"/>
+<circle class="nd" style="animation-delay:3.5s" cx="116.4" cy="406.0" r="3"/>
+<circle class="nd" style="animation-delay:3.8s" cx="116.4" cy="194.0" r="3"/>
+<circle class="nd" style="animation-delay:4.2s" cx="300.0" cy="88.0" r="3"/>
+<circle class="nd" style="animation-delay:4.5s" cx="483.6" cy="194.0" r="3"/>
+        </svg>
+        <div class="holo-scan"></div>
+      </div>
       <div class="hero-logo-wrap" id="heroLogo">
         <div class="orbit-ring r1"><span class="dot"></span></div>
         <div class="orbit-ring r2"><span class="dot"></span></div>
@@ -581,12 +641,12 @@ footer{background:#03050f;border-top:1px solid rgba(255,255,255,.06);padding:70p
         <p class="form-note" id="formNote">Your details are kept private and only used to respond to your enquiry.</p>
       </form>
       <div class="reveal" data-d="2">
-        <div class="map-ph">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#60A5FA" stroke-width="2"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 1 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-          Map — Selangor, Malaysia
+        <div class="map-box">
+          <iframe title="SAHAAN ITECH SOLUTION office — Pantai Panorama Condo, Bangsar South, Kuala Lumpur" src="https://www.google.com/maps?q=Pantai%20Panorama%20Condominium%2C%20Bangsar%20South%2C%2059200%20Kuala%20Lumpur&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+          <a class="map-open" href="https://www.google.com/maps/search/?api=1&query=Block%2005-05-11%2C%20Pantai%20Panorama%20Condo%2C%20Jalan%20112H%2C%20Bangsar%20South%2C%2059200%20Kuala%20Lumpur" target="_blank" rel="noopener">Open in Google Maps ↗</a>
         </div>
-        <div class="info-card"><span class="icon-chip"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 1 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span><div><h3>Office</h3><p>Selangor, Malaysia</p></div></div>
-        <div class="info-card"><span class="icon-chip"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M4 4h16v16H4z" opacity="0"/><path d="M22 6 12 13 2 6"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg></span><div><h3>Email</h3><p>SahaanITech@outlook.com</p></div></div>
+        <div class="info-card"><span class="icon-chip"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 1 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span><div><h3>Office</h3><p>Block 05-05-11, Pantai Panorama Condo, Jalan 112H, Bangsar South, 59200 Kuala Lumpur</p></div></div>
+        <div class="info-card"><span class="icon-chip"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M4 4h16v16H4z" opacity="0"/><path d="M22 6 12 13 2 6"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg></span><div><h3>Email</h3><p><a href="mailto:SahaanITech@outlook.com" style="color:var(--text-2)">SahaanITech@outlook.com</a></p></div></div>
         <div class="info-card"><span class="icon-chip"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M22 16.92V21a1 1 0 0 1-1.09 1A19 19 0 0 1 2 3.09 1 1 0 0 1 3 2h4.09a1 1 0 0 1 1 .75l1 4a1 1 0 0 1-.29 1L6.6 9.4a16 16 0 0 0 8 8l1.65-2.2a1 1 0 0 1 1-.29l4 1a1 1 0 0 1 .75 1z"/></svg></span><div><h3>Phone / WhatsApp</h3><p>+60 10-274 7876 · Mon–Sat, 9am–5pm</p></div></div>
         <div class="info-card"><span class="icon-chip"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></span><div><h3>Support</h3><p>24/7 monitoring &amp; maintenance for active clients</p></div></div>
       </div>
@@ -874,7 +934,8 @@ if(matchMedia('(hover:hover)').matches){
 }
 
 /* ====================== FORMS ====================== */
-$('#contactForm').addEventListener('submit',e=>{
+const CONTACT_EMAIL='SahaanITech@outlook.com';
+$('#contactForm').addEventListener('submit',async e=>{
   e.preventDefault();
   let ok=true;
   const check=(id,test)=>{const f=document.getElementById(id),w=f.closest('.field'),bad=!test(f.value.trim());w.classList.toggle('invalid',bad);if(bad)ok=false;};
@@ -883,8 +944,39 @@ $('#contactForm').addEventListener('submit',e=>{
   check('f-email',v=>/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v));
   check('f-details',v=>v.length>9);
   const note=$('#formNote');
-  if(ok){e.target.reset();note.textContent='✓ Thank you! Your message has been received — we\u2019ll reply within one business day.';note.style.color='#4ade80';}
-  else{note.textContent='Please correct the highlighted fields above.';note.style.color='#f87171';}
+  if(!ok){note.textContent='Please correct the highlighted fields above.';note.style.color='#f87171';return;}
+  const v=id=>document.getElementById(id).value.trim();
+  const payload={
+    name:v('f-name'), company:v('f-company')||'—', phone:v('f-phone'), email:v('f-email'),
+    service:v('f-service'), budget:v('f-budget'), message:v('f-details'),
+    _subject:'New website enquiry — '+v('f-name'),
+    _template:'table', _captcha:'false'
+  };
+  const btn=e.target.querySelector('button[type=submit]');
+  const btnHTML=btn.innerHTML;
+  btn.disabled=true; btn.style.opacity=.7; btn.textContent='Sending…';
+  note.textContent='Sending your message…'; note.style.color='var(--text-2)';
+  try{
+    const r=await fetch('https://formsubmit.co/ajax/'+CONTACT_EMAIL,{
+      method:'POST',
+      headers:{'Content-Type':'application/json','Accept':'application/json'},
+      body:JSON.stringify(payload)
+    });
+    if(!r.ok)throw new Error('relay failed');
+    e.target.reset();
+    note.textContent='✓ Thank you! Your message has been sent to our team — we\u2019ll reply within one business day.';
+    note.style.color='#4ade80';
+  }catch(err){
+    const body=encodeURIComponent(
+      'Name: '+payload.name+'\nCompany: '+payload.company+'\nPhone: '+payload.phone+
+      '\nEmail: '+payload.email+'\nService: '+payload.service+'\nBudget: '+payload.budget+
+      '\n\nProject Details:\n'+payload.message);
+    location.href='mailto:'+CONTACT_EMAIL+'?subject='+encodeURIComponent(payload._subject)+'&body='+body;
+    note.textContent='Direct sending was unavailable, so we\u2019ve opened your email app with the message pre-filled — just press send.';
+    note.style.color='#fbbf24';
+  }finally{
+    btn.disabled=false; btn.style.opacity=1; btn.innerHTML=btnHTML;
+  }
 });
 $('#newsForm').addEventListener('submit',e=>{e.preventDefault();e.target.innerHTML='<span style="color:#4ade80;font-size:.9rem;padding:10px 0">✓ Subscribed — welcome aboard!</span>';});
 
@@ -908,13 +1000,42 @@ $('#newsForm').addEventListener('submit',e=>{e.preventDefault();e.target.innerHT
   const points=new THREE.Points(pGeo,new THREE.PointsMaterial({color:0x60A5FA,size:.05,transparent:true,opacity:.75}));
   scene.add(points);
 
-  /* wireframe shapes */
-  const matA=new THREE.MeshBasicMaterial({color:0x2563EB,wireframe:true,transparent:true,opacity:.30});
-  const matB=new THREE.MeshBasicMaterial({color:0x38BDF8,wireframe:true,transparent:true,opacity:.22});
-  const ico=new THREE.Mesh(new THREE.IcosahedronGeometry(2.4,1),matA); ico.position.set(4.6,.4,-2); scene.add(ico);
-  const torus=new THREE.Mesh(new THREE.TorusGeometry(1.5,.4,10,40),matB); torus.position.set(-5.4,-2.2,-3); scene.add(torus);
-  const oct=new THREE.Mesh(new THREE.OctahedronGeometry(1,0),matB); oct.position.set(-4.2,2.8,-4); scene.add(oct);
-  const box=new THREE.Mesh(new THREE.BoxGeometry(1.1,1.1,1.1),matA); box.position.set(5.6,-3,-5); scene.add(box);
+  /* floating technology & software symbols */
+  const COLORS=['#60A5FA','#38BDF8','#2563EB','#93C5FD'];
+  function symbolTexture(draw,color){
+    const c=document.createElement('canvas');c.width=c.height=256;
+    const x=c.getContext('2d');
+    x.strokeStyle=x.fillStyle=color;
+    x.shadowColor=color;x.shadowBlur=26;
+    x.lineWidth=10;x.lineCap='round';x.lineJoin='round';
+    x.textAlign='center';x.textBaseline='middle';
+    draw(x);
+    const tx=new THREE.CanvasTexture(c);tx.minFilter=THREE.LinearFilter;return tx;
+  }
+  const text=s=>x=>{x.font='bold '+(s.length>3?78:s.length>2?96:120)+'px "Space Grotesk","Segoe UI",monospace';x.fillText(s,128,134);};
+  const dbIcon=x=>{x.beginPath();x.ellipse(128,78,62,24,0,0,Math.PI*2);x.stroke();
+    x.beginPath();x.moveTo(66,78);x.lineTo(66,178);x.ellipse(128,178,62,24,0,Math.PI,0,true);x.lineTo(190,78);x.stroke();
+    x.beginPath();x.ellipse(128,128,62,24,0,0,Math.PI);x.stroke();};
+  const cloudIcon=x=>{x.beginPath();x.arc(96,140,38,Math.PI*.45,Math.PI*1.5);x.arc(136,104,42,Math.PI,Math.PI*1.95);x.arc(178,142,34,Math.PI*1.45,Math.PI*.5);x.closePath();x.stroke();};
+  const gitIcon=x=>{x.beginPath();x.arc(80,70,18,0,Math.PI*2);x.stroke();x.beginPath();x.arc(80,186,18,0,Math.PI*2);x.stroke();x.beginPath();x.arc(176,128,18,0,Math.PI*2);x.stroke();
+    x.beginPath();x.moveTo(80,88);x.lineTo(80,168);x.stroke();x.beginPath();x.moveTo(80,118);x.quadraticCurveTo(80,128,96,128);x.lineTo(158,128);x.stroke();};
+  const gearIcon=x=>{x.beginPath();x.arc(128,128,34,0,Math.PI*2);x.stroke();
+    for(let i=0;i<8;i++){const a=i*Math.PI/4;x.beginPath();x.moveTo(128+Math.cos(a)*52,128+Math.sin(a)*52);x.lineTo(128+Math.cos(a)*72,128+Math.sin(a)*72);x.stroke();}};
+  const wifiIcon=x=>{for(let r=0;r<3;r++){x.beginPath();x.arc(128,170,36+r*34,Math.PI*1.25,Math.PI*1.75);x.stroke();}x.beginPath();x.arc(128,176,10,0,Math.PI*2);x.fill();};
+
+  const DEFS=[text('</>'),text('{ }'),text('>_'),text('AI'),text('API'),text('SQL'),text('=>'),text('0101'),text('#'),dbIcon,cloudIcon,gitIcon,gearIcon,wifiIcon];
+  const SPOTS=[[4.9,.6,-2],[-5.5,-2.1,-3],[-4.4,2.7,-4],[5.7,-2.8,-4.5],[-6.4,.4,-2.5],[6.3,2.4,-3.5],[-3.6,-3.4,-5],[3.8,3.4,-5],[-7.2,2.2,-5.5],[7.4,-.6,-5.5],[-2.8,3.8,-6],[2.6,-4,-6],[-7.8,-1.6,-6.5],[7.8,1.6,-6.5]];
+  const symCount=innerWidth<640?8:DEFS.length;
+  const symbols=[];
+  for(let i=0;i<symCount;i++){
+    const mat=new THREE.SpriteMaterial({map:symbolTexture(DEFS[i],COLORS[i%COLORS.length]),transparent:true,opacity:.85,depthWrite:false});
+    const sp=new THREE.Sprite(mat);
+    const sc=1.25+(i%3)*.3;
+    sp.scale.set(sc,sc,1);
+    sp.position.set(...SPOTS[i]);
+    scene.add(sp);
+    symbols.push({sp,baseY:SPOTS[i][1],baseX:SPOTS[i][0],phase:i*1.7,bob:.25+(i%4)*.09,sway:.12+(i%3)*.06,spin:(i%2?1:-1)*(.05+(i%3)*.03)});
+  }
 
   let mx=0,my=0;
   addEventListener('pointermove',e=>{mx=(e.clientX/innerWidth-.5);my=(e.clientY/innerHeight-.5)},{passive:true});
@@ -936,10 +1057,12 @@ $('#newsForm').addEventListener('submit',e=>{e.preventDefault();e.target.innerHT
     if(!visible)return;
     const t=clock.getElapsedTime();
     points.rotation.y=t*.03; points.rotation.x=Math.sin(t*.15)*.06;
-    ico.rotation.x=t*.18; ico.rotation.y=t*.24;
-    torus.rotation.x=t*.3; torus.rotation.z=t*.2;
-    oct.rotation.y=t*.4; oct.position.y=2.8+Math.sin(t*.8)*.3;
-    box.rotation.x=t*.25; box.rotation.y=t*.35; box.position.y=-3+Math.cos(t*.7)*.35;
+    for(const s of symbols){
+      s.sp.position.y=s.baseY+Math.sin(t*.8+s.phase)*s.bob;
+      s.sp.position.x=s.baseX+Math.cos(t*.5+s.phase)*s.sway;
+      s.sp.material.rotation=Math.sin(t*.6+s.phase)*s.spin*2;
+      s.sp.material.opacity=.7+Math.sin(t*1.1+s.phase)*.2;
+    }
     cam.position.x+= (mx*1.6-cam.position.x)*.04;
     cam.position.y+= (-my*1.0-cam.position.y)*.04;
     cam.lookAt(0,0,0);
